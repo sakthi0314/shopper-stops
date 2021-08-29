@@ -76,6 +76,9 @@ const deleteUserById = async (userId) => {
     throw new AppError('User not found', httpStatus.NOT_FOUND);
   }
   await user.remove();
+
+  // TODO: Need to delete all the data of reviews of a product
+
   return user;
 };
 
