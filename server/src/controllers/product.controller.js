@@ -5,7 +5,6 @@ const pick = require('../utils/pick');
 
 const countProducts = catchAsync(async (req, res) => {
   const count = await productService.countProducts();
-
   res.status(httpStatus.OK).send(count);
 });
 
@@ -29,7 +28,6 @@ const createProduct = catchAsync(async (req, res) => {
 
 const updateProduct = async (req, res) => {
   const product = await productService.updateProductById(req.params.productId, req.body);
-
   res.status(httpStatus.OK).send(product);
 };
 
