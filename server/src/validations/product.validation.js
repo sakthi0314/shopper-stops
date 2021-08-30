@@ -33,7 +33,7 @@ const updateProduct = {
     category: Joi.string().custom(objectId),
     price: Joi.number(),
     discount: Joi.number(),
-    sizes: Joi.string().valid('XXL', 'XL', 'L', 'M', 'S'), // TODO: Need more refactor later
+    sizes: Joi.array().items(Joi.string().valid('XXL', 'XL', 'L', 'M', 'S')).required().max(5).min(1), // TODO: Sizes Need more refactor later
     stocks: Joi.number(),
   },
 };
