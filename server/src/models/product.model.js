@@ -5,24 +5,24 @@ const productSchema = new mongoose.Schema(
   {
     name: {
       type: String,
-      required: [true, 'Product must have a name.'],
+      required: true,
       trim: true,
     },
     slug: String,
     description: {
       type: String,
-      required: [true, 'Product must have a description.'],
+      required: true,
       trim: true,
     },
     images: String,
     category: {
       type: String,
-      required: [true, 'Product must belong to a category.'],
+      required: true,
       trim: true,
     },
     price: {
       type: Number,
-      required: [true, 'A product must have a price.'],
+      required: true,
     },
     discount: {
       type: Number,
@@ -30,18 +30,16 @@ const productSchema = new mongoose.Schema(
     },
     sizes: {
       type: [String],
-      required: [true, 'Product must have sizes of it.'],
+      required: true,
     },
     stocks: {
       type: Number,
-      required: [true, 'Product must have stocks'],
+      required: true,
       default: 1,
     },
     ratingsAverage: {
       type: Number,
-      default: 4.5,
-      min: [1, 'Rating must be above 1.0'],
-      max: [5, 'Rating must be below 5.0'],
+      default: 4.5, // min and max values are defined in product.validation.js
       set: (val) => Math.round(val * 10) / 10, // 4.666666, 46.6666, 47, 4.7
     },
     ratingsQuantity: {
@@ -55,11 +53,11 @@ const productSchema = new mongoose.Schema(
 productSchema.plugin(toJSON);
 productSchema.plugin(paginate);
 
-// productSchema.virtual('reviews', {
-//   ref: 'Review',
-//   foreignField: 'product',
-//   localField: '_id',
-// });
+productSchema.virtual('reviews', {
+  ref: 'Review',
+  foreignField: 'product',
+  localField: '_id',
+});
 
 productSchema.virtual('totalPrice').get(function () {
   const subtractionPrice = this.price * (this.discount / 100);
