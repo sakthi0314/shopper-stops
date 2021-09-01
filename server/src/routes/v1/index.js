@@ -4,6 +4,7 @@ const userRoute = require('./user.route');
 const docsRoute = require('./docs.route');
 const productRoute = require('./product.route');
 const reviewRoute = require('./review.route');
+const shippingAddressRoute = require('./shippingAddress.route');
 const config = require('../../config/config');
 
 const router = express.Router();
@@ -24,6 +25,10 @@ const defaultRoutes = [
   {
     path: '/reviews',
     route: reviewRoute,
+  },
+  {
+    path: '/shipping-address',
+    route: shippingAddressRoute,
   },
 ];
 
