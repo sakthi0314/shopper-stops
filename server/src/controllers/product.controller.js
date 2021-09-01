@@ -1,5 +1,6 @@
 const httpStatus = require('http-status');
 const productService = require('../services/product.service');
+const AppError = require('../utils/AppError');
 const catchAsync = require('../utils/catchAsync');
 const pick = require('../utils/pick');
 
@@ -17,7 +18,7 @@ const getProducts = catchAsync(async (req, res) => {
 
 const getProduct = catchAsync(async (req, res) => {
   const product = await productService.getProductById(req.params.productId);
-
+  if (!product) throw new AppError('Product not found', httpStatus.NOT_FOUND);
   res.status(httpStatus.OK).send(product);
 });
 

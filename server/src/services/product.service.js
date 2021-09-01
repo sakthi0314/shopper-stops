@@ -73,6 +73,8 @@ const updateProductById = async (productId, updateBody) => {
   if (!product) {
     throw new AppError('No product found', httpStatus.NOT_FOUND);
   }
+
+  return product;
 };
 
 /**
