@@ -64,7 +64,7 @@ const getShippingAddressByUserId = async (userId) => {
  * @param {Object} updateBody
  * @returns {Promise<ShippingAddress>}
  */
-const updateShippingAddressById = async (userId, updateBody) => {
+const updateShippingAddressByUserId = async (userId, updateBody) => {
   const userShippingAddress = await getShippingAddressByUserId(userId);
 
   if (!userShippingAddress) {
@@ -106,7 +106,7 @@ const updateShippingAddressById = async (userId, updateBody) => {
  * @param {Object} requestBody
  * @returns {Promise<Product>}
  */
-const deleteShippingAddressById = async (userId, requestBody) => {
+const deleteShippingAddressByUserId = async (userId, requestBody) => {
   let userShippingAddress = await getShippingAddressByUserId(userId);
 
   if (!userShippingAddress) return new AppError('No shipping address found.', httpStatus.NOT_FOUND);
@@ -143,6 +143,6 @@ module.exports = {
   createShippingAddress,
   queryShippingAddress,
   getShippingAddressByUserId,
-  updateShippingAddressById,
-  deleteShippingAddressById,
+  updateShippingAddressByUserId,
+  deleteShippingAddressByUserId,
 };

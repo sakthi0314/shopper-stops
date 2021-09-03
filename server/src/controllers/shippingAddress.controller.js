@@ -26,11 +26,11 @@ exports.createShippingAddress = catchAsync(async (req, res) => {
 });
 
 exports.updateShippingAddress = catchAsync(async (req, res) => {
-  const shippingAddress = await shippingAddressService.updateShippingAddressById(req.params.userId, req.body);
+  const shippingAddress = await shippingAddressService.updateShippingAddressByUserId(req.params.userId, req.body);
   res.status(httpStatus.ACCEPTED).send(shippingAddress);
 });
 
 exports.deleteShippingAddress = catchAsync(async (req, res) => {
-  await shippingAddressService.deleteShippingAddressById(req.params.userId, req.body);
+  await shippingAddressService.deleteShippingAddressByUserId(req.params.userId, req.body);
   res.status(httpStatus.NO_CONTENT).send();
 });
